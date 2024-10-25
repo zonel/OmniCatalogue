@@ -1,0 +1,6 @@
+@OmniCatalogue.Backend_HostAddress = http://localhost:5106
+
+GET {{OmniCatalogue.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
