@@ -12,15 +12,16 @@ public class ImagesController(ImageRepository repository, OpenAiService openAiSe
 {
     [Authorize]
     [HttpPost("generate")]
-    public async Task<IActionResult> GenerateImage([FromBody] string prompt)
+    public async Task<IActionResult> GenerateImage([FromBody] CreateImageDto dto)
     {
         var username = User.Identity?.Name;
-        var imageUrl = await openAiService.GenerateImageFromPrompt(prompt);
+        var imageUrl = await openAiService.GenerateImageFromPrompt(dto.Prompt);
         var newImage = new ImageData
         {
             ImageUrl = imageUrl,
-            Prompt = prompt,
-            Tags = new List<string> { "ExampleTag" },
+            Prompt = dto.Prompt,
+            Tags = dto.Tags,
+            BookName = dto.BookName,
             CreatedAt = DateTime.UtcNow,
             CreatedBy = username!
         };
