@@ -15,7 +15,7 @@ public class ImagesController(ImageRepository repository, OpenAiService openAiSe
     public async Task<IActionResult> GenerateImage([FromBody] CreateImageDto dto)
     {
         var username = User.Identity?.Name;
-        var imageUrl = await openAiService.GenerateImageFromPrompt(dto.Prompt);
+        var imageUrl = await openAiService.GenerateImageFromPrompt(dto.Prompt, dto.BookName);
         var newImage = new ImageData
         {
             ImageUrl = imageUrl,

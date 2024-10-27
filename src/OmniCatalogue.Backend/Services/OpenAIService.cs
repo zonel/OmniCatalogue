@@ -9,14 +9,15 @@ public class OpenAiService(HttpClient httpClient, IConfiguration configuration)
 {
     private readonly string _openAiApiKey = configuration["OpenAI:APIKey"]!;
 
-    public async Task<string> GenerateImageFromPrompt(string prompt)
+    public async Task<string> GenerateImageFromPrompt(string prompt, string bookName)
     {
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _openAiApiKey);
-
+        var promptWithBookName = EnrichPromptWithBookName(prompt, bookName);
+        
         var requestBody = new
         {
             model = configuration["OpenAI:ImageGenerationModel"]!,
-            prompt = prompt,
+            prompt = promptWithBookName,
             n = 1,
             size = "1024x1024"
         };
@@ -31,4 +32,7 @@ public class OpenAiService(HttpClient httpClient, IConfiguration configuration)
 
         return result?.Data.FirstOrDefault()?.Url ?? string.Empty;
     }
+
+    private static string EnrichPromptWithBookName(string prompt, string bookName)
+        => $"Please base your image generation on book {bookName}. The image depicts {prompt}";
 }
