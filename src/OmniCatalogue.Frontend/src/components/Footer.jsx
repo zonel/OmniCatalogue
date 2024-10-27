@@ -2,8 +2,11 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white text-center py-4 mt-8 w-full">
-      <p>&copy; 2024 OmniCatalogue. All rights reserved.</p>
+    <footer 
+      className="w-full bg-accent text-white py-4 text-center shadow-md"
+      style={{ fontFamily: '"Rockwell", serif' }}
+    >
+      <p className="text-sm">&copy; {new Date().getFullYear()} OmniCatalogue. All rights reserved.</p>
     </footer>
   );
 };
