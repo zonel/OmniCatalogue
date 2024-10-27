@@ -89,7 +89,7 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty; 
     });
 }
-
+app.UseStaticFiles();
 app.UseCors("AllowFrontend");
 app.MapControllers();
 
