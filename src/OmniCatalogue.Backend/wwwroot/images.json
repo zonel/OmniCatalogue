@@ -1,0 +1,34 @@
+﻿[
+  {
+    "ImageUrl": "http://localhost:5106/images/image1.png",
+    "Prompt": "How zone could look like",
+    "Tags": ["SciFi", "PostApo", "Soviet"],
+    "BookName": "Roadside picnic",
+    "CreatedAt": "2023-10-25T00:00:00Z",
+    "CreatedBy": "user1"
+  },
+  {
+    "ImageUrl": "http://localhost:5106/images/image2.png",
+    "Prompt": "Desert worm",
+    "Tags": ["monster", "dune", "scifi"],
+    "BookName": "Dune",
+    "CreatedAt": "2023-10-24T00:00:00Z",
+    "CreatedBy": "user2"
+  },
+  {
+    "ImageUrl": "http://localhost:5106/images/image3.png",
+    "Prompt": "City of Oceania",
+    "Tags": ["distopia", "horror", "scifi"],
+    "BookName": "1984 by Orwell",
+    "CreatedAt": "2023-10-24T00:00:00Z",
+    "CreatedBy": "user2"
+  },
+  {
+    "ImageUrl": "http://localhost:5106/images/image4.png",
+    "Prompt": "The Grand Hall of Hogwarts",
+    "Tags": ["wizard", "mystery", "magic"],
+    "BookName": "Harry Potter by J.K. Rowling",
+    "CreatedAt": "2023-10-24T00:00:00Z",
+    "CreatedBy": "user1"
+  }
+]
