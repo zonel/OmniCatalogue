@@ -16,14 +16,18 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-export const generateImage = async ({ prompt, tags, bookName }) => {
-  const response = await api.post(
-    '/Images/generate',
-    { prompt, tags, bookName },
-    { timeout: 60000 }
-  );
-  return response.data;
-};
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('token');
+
+      window.location.href = '/login';
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export const fetchGalleryImages = async () => {
   const response = await api.get('/Images/gallery');
@@ -32,6 +36,11 @@ export const fetchGalleryImages = async () => {
 
 export const fetchMyImages = async () => {
   const response = await api.get('/Images/my-images');
+  return response.data;
+};
+
+export const generateImage = async ({ prompt, tags, bookName }) => {
+  const response = await api.post('/Images/generate', { prompt, tags, bookName });
   return response.data;
 };
 
