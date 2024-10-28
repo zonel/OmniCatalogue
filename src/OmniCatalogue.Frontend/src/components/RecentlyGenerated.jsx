@@ -22,7 +22,7 @@ const RecentlyGenerated = () => {
   }, []);
 
   return (
-    <Box sx={{ backgroundColor: '#654236', margin: 0, padding: 0 }}> {/* Dark accent color */}
+    <Box sx={{ backgroundColor: '#654236', paddingBottom: '3rem' }}> {/* Extended brown space at the bottom */}
       <Typography
         variant="h5"
         sx={{
@@ -32,7 +32,7 @@ const RecentlyGenerated = () => {
           textAlign: 'center',
           color: '#F7EBDE',
           marginBottom: '1rem',
-          paddingTop: '1rem', // Adjust for spacing without adding a gap
+          paddingTop: '1rem',
         }}
       >
         Recently Generated

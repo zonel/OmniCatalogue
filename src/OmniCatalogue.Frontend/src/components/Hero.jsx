@@ -5,27 +5,27 @@ const Hero = () => {
   const images = [
     '/images/image1.png',
     '/images/image2.png',
+    '/images/image4.png',
   ];
   
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [pause, setPause] = useState(false); // New state to handle pause on hover
+  const [pause, setPause] = useState(false);
 
   useEffect(() => {
-    if (pause) return; // Do not change the image if paused
+    if (pause) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Slower transition, 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, [images.length, pause]); // Re-run if `pause` state changes
+  }, [images.length, pause]);
 
   return (
     <Box className="w-full bg-mainBg text-accent py-16 px-4 shadow-md">
       <div className="flex flex-col md:flex-row max-w-screen-xl mx-auto items-center">
         
-        {/* Left Section: Project Title and Description */}
         <Box className="md:w-1/2 text-left mb-8 md:mb-0 pr-6">
           <Typography 
             variant="h3"
@@ -56,11 +56,10 @@ const Hero = () => {
           </Typography>
         </Box>
 
-        {/* Right Section: Stacked Images */}
         <Box
           className="relative md:w-1/2 flex justify-center items-center"
-          onMouseEnter={() => setPause(true)} // Stop cycle on hover
-          onMouseLeave={() => setPause(false)} // Resume cycle when mouse leaves
+          onMouseEnter={() => setPause(true)}
+          onMouseLeave={() => setPause(false)}
         >
           {images.map((image, index) => (
             <Box

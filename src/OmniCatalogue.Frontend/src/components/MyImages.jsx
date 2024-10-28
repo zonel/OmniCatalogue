@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ImageCard from './ImageCard';
+import ImageGalleryCard from './ImageGalleryCard';
 import { fetchMyImages } from '../services/api';
 
 const MyImages = () => {
@@ -18,9 +18,14 @@ const MyImages = () => {
   }, []);
 
   return (
-    <div className="my-images">
+    <div style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '1.5rem',
+      justifyContent: 'center',
+    }}>
       {images.length > 0 ? (
-        images.map((image) => <ImageCard key={image.imageUrl} image={image} />)
+        images.map((image) => <ImageGalleryCard key={image.imageUrl} image={image} />)
       ) : (
         <p>No images found for this user.</p>
       )}
