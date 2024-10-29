@@ -30,5 +30,21 @@
     "BookName": "Harry Potter by J.K. Rowling",
     "CreatedAt": "2023-10-24T00:00:00Z",
     "CreatedBy": "user1"
+  },
+  {
+    "ImageUrl": "http://localhost:5106/images/image5.png",
+    "Prompt": "Hobbits houses",
+    "Tags": ["wizard", "Lotr", "hobbits"],
+    "BookName": "Lord of the rings",
+    "CreatedAt": "2023-10-24T00:00:00Z",
+    "CreatedBy": "user2"
+  },
+  {
+    "ImageUrl": "http://localhost:5106/images/image6.png",
+    "Prompt": "Illidan",
+    "Tags": ["WoW", "Elf", "magic"],
+    "BookName": "World of Warcraft",
+    "CreatedAt": "2023-10-24T00:00:00Z",
+    "CreatedBy": "user1"
   }
 ]
