@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { generateImage } from '../services/api';
+import { Box, Typography, TextField, Button } from '@mui/material';
 
 const ImageGenerator = () => {
-  const [prompt, setPrompt] = useState('');
-  const [tags, setTags] = useState('');
-  const [bookName, setBookName] = useState('');
+  const { register, handleSubmit, reset } = useForm();
   const [generatedImage, setGeneratedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleGenerate = async () => {
+  const onSubmit = async (data) => {
     setLoading(true);
     setError(null);
     setGeneratedImage(null);
 
     try {
-      const tagsArray = tags.split(',').map(tag => tag.trim());
-      const image = await generateImage({ prompt, tags: tagsArray, bookName });
+      const tagsArray = data.tags.split(',').map((tag) => tag.trim());
+      const image = await generateImage({ prompt: data.prompt, tags: tagsArray, bookName: data.bookName });
       setGeneratedImage(image);
     } catch (err) {
       if (err.code === 'ECONNABORTED') {
@@ -26,65 +26,96 @@ const ImageGenerator = () => {
       }
     } finally {
       setLoading(false);
+      reset();
     }
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-start gap-8 max-w-5xl mx-auto mt-10">
+    <Box className="flex flex-col md:flex-row justify-center items-start gap-8 max-w-5xl mx-auto mt-10" sx={{ fontFamily: 'Rockwell, serif' }}>
       
-      {/* Left Section: Form */}
-      <div className="md:w-2/5 w-full p-6 bg-accent text-white rounded-lg shadow-lg">
-        <h3 className="text-3xl font-semibold mb-4 text-white">Generate Image</h3>
-        
-        <div className="mb-4">
-          <label className="block text-lg font-medium mb-2">Prompt</label>
-          <input
-            type="text"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Enter image prompt"
-            className="w-full px-4 py-2 bg-white text-accent border border-white rounded-md"
-          />
-        </div>
-        
-        <div className="mb-4">
-          <label className="block text-lg font-medium mb-2">Tags (comma-separated)</label>
-          <input
-            type="text"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-            placeholder="Enter tags"
-            className="w-full px-4 py-2 bg-white text-accent border border-white rounded-md"
-          />
-        </div>
-        
-        <div className="mb-6">
-          <label className="block text-lg font-medium mb-2">Book Name</label>
-          <input
-            type="text"
-            value={bookName}
-            onChange={(e) => setBookName(e.target.value)}
-            placeholder="Enter book name"
-            className="w-full px-4 py-2 bg-white text-accent border border-white rounded-md"
-          />
-        </div>
-        
-        <button
-          onClick={handleGenerate}
-          className="w-full bg-rareAccent text-white font-semibold py-2 rounded-md hover:bg-white hover:text-accent"
-        >
+      <Box className="md:w-2/5 w-full p-6 bg-accent text-white rounded-lg shadow-lg">
+        <Typography variant="h4" sx={{ mb: 4, color: 'white', fontFamily: 'Rockwell, serif' }}>
           Generate Image
-        </button>
+        </Typography>
+        
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="body1" sx={{ mb: 1, fontFamily: 'Rockwell, serif' }}>Prompt</Typography>
+            <TextField
+              fullWidth
+              {...register("prompt", { required: true })}
+              placeholder="Enter image prompt"
+              variant="outlined"
+              sx={{ backgroundColor: 'white', borderRadius: '5px', fontFamily: 'Rockwell, serif' }}
+              slotProps={{
+                input: {
+                  style: { color: '#654236', fontFamily: 'Rockwell, serif' },
+                },
+              }}
+            />
+          </Box>
+          
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="body1" sx={{ mb: 1, fontFamily: 'Rockwell, serif' }}>Tags (comma-separated)</Typography>
+            <TextField
+              fullWidth
+              {...register("tags", { required: true })}
+              placeholder="Enter tags"
+              variant="outlined"
+              sx={{ backgroundColor: 'white', borderRadius: '5px', fontFamily: 'Rockwell, serif' }}
+              slotProps={{
+                input: {
+                  style: { color: '#654236', fontFamily: 'Rockwell, serif' },
+                },
+              }}
+            />
+          </Box>
+          
+          <Box sx={{ mb: 6 }}>
+            <Typography variant="body1" sx={{ mb: 1, fontFamily: 'Rockwell, serif' }}>Book Name</Typography>
+            <TextField
+              fullWidth
+              {...register("bookName", { required: true })}
+              placeholder="Enter book name"
+              variant="outlined"
+              sx={{ backgroundColor: 'white', borderRadius: '5px', fontFamily: 'Rockwell, serif' }}
+              slotProps={{
+                input: {
+                  style: { color: '#654236', fontFamily: 'Rockwell, serif' },
+                },
+              }}
+            />
+          </Box>
+          
+          <Button
+            type="submit"
+            fullWidth
+            sx={{
+              backgroundColor: 'white',
+              color: '#654236',
+              fontWeight: 'bold',
+              fontFamily: 'Rockwell, serif',
+              '&:hover': {
+                backgroundColor: '#e5d3c3',
+              },
+            }}
+          >
+            Generate Image
+          </Button>
 
-        {error && <p className="text-red-500 mt-4">{error}</p>}
-      </div>
+          {error && (
+            <Typography color="error" sx={{ mt: 4, fontFamily: 'Rockwell, serif' }}>
+              {error}
+            </Typography>
+          )}
+        </form>
+      </Box>
       
-      {/* Right Section: Image Display */}
-      <div className="md:w-3/5 w-full flex justify-center items-center p-6 bg-accent rounded-lg shadow-lg h-96">
+      <Box className="md:w-3/5 w-full flex justify-center items-center p-6 bg-accent rounded-lg shadow-lg h-96">
         {loading ? (
-          <div className="flex justify-center items-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-white"></div>
-          </div>
+          <Box className="flex justify-center items-center">
+            <Box className="animate-spin rounded-full h-12 w-12 border-t-4 border-white"></Box>
+          </Box>
         ) : generatedImage ? (
           <img
             src={generatedImage.imageUrl}
@@ -92,10 +123,12 @@ const ImageGenerator = () => {
             className="max-w-full max-h-full rounded-md shadow-md"
           />
         ) : (
-          <div className="text-white text-lg">Image will appear here after generation.</div>
+          <Typography sx={{ color: 'white', fontSize: '1.25rem', fontFamily: 'Rockwell, serif' }}>
+            Image will appear here after generation.
+          </Typography>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

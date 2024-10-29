@@ -69,7 +69,7 @@ const HowItWorks = () => {
               <Typography variant="h6" sx={{ fontWeight: 'bold', mb: '0.5rem', color: '#654236', fontFamily: 'Rockwell, serif' }}>
                 {step.title}
               </Typography>
-              <Typography variant="body2" sx={{ color: '#654236' }}>
+              <Typography variant="body2" sx={{ color: '#654236', fontFamily: 'Rockwell, serif' }}>
                 {step.description}
               </Typography>
             </Box>

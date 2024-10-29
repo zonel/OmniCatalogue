@@ -1,17 +1,26 @@
 import React from 'react';
 import MyImages from '../components/MyImages';
 import UserInfo from '../components/UserInfo';
+import { Typography, Box } from '@mui/material';
 
 const MyImagesPage = () => {
   return (
-    <div style={{ display: 'flex', padding: '2rem', gap: '2rem' }}>
+    <Box sx={{ display: 'flex', padding: '2rem', gap: '2rem', fontFamily: 'Rockwell, serif' }}>
       <UserInfo />
       
-      <div style={{ flex: 3 }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>My Generated Images</h2>
+      <Box sx={{ flex: 3 }}>
+        <Typography 
+          variant="h4" 
+          align="center" 
+          gutterBottom
+          sx={{ fontFamily: 'Rockwell, serif', color: '#654236', marginBottom: '1rem' }}
+        >
+          My Generated Images
+        </Typography>
+        
         <MyImages />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
