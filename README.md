@@ -1,4 +1,5 @@
 # OmniCatalogue
+![image](https://github.com/user-attachments/assets/bc5c9151-187e-40a2-8b00-5fadeb6747e8)
 
 OmniCatalogue is an AI-powered web application that brings literature to life by transforming text prompts into unique, AI-generated images. Users can explore an extensive gallery of generated images, create their own visuals based on literary scenes, and manage their personal collections.
 
