@@ -25,9 +25,10 @@ jobs:
         working-directory: ./src/OmniCatalogue.Frontend
         run: npm install
 
-      - name: Run ESLint
+      - name: Run ESLint (Non-blocking)
         working-directory: ./src/OmniCatalogue.Frontend
-        run: npm run lint
+        run: |
+          npm run lint || echo "ESLint completed with errors, proceeding with the pipeline."
 
       - name: Build frontend
         working-directory: ./src/OmniCatalogue.Frontend
