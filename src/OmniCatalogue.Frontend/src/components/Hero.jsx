@@ -7,7 +7,6 @@ const Hero = () => {
     '/images/image2.png',
     '/images/image4.png',
   ];
-  
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [pause, setPause] = useState(false);
@@ -23,15 +22,35 @@ const Hero = () => {
   }, [images.length, pause]);
 
   return (
-    <Box className="w-full bg-mainBg text-accent py-16 px-4 shadow-md">
-      <div className="flex flex-col md:flex-row max-w-screen-xl mx-auto items-center">
+    <Box 
+      sx={{ 
+        width: '100%', 
+        backgroundColor: '#F7EBDE', 
+        color: '#654236', 
+        py: 16, 
+        px: 4, 
+        boxShadow: 1, 
+        pt: { xs: 10, md: 16 }
+      }}
+    >
+      <Box 
+        className="flex flex-col md:flex-row max-w-screen-xl mx-auto items-center" 
+        sx={{ flexDirection: { xs: 'column', md: 'row' } }}
+      >
         
-        <Box className="md:w-1/2 text-left mb-8 md:mb-0 pr-6">
+        <Box 
+          sx={{ 
+            width: '100%', 
+            textAlign: { xs: 'center', md: 'left' }, 
+            mb: { xs: 8, md: 0 }, 
+            pr: { md: 6 } 
+          }}
+        >
           <Typography 
             variant="h3"
             sx={{
               fontFamily: '"Rockwell", serif',
-              fontSize: '4.5rem',
+              fontSize: { xs: '2rem', md: '4.5rem' }, 
               fontWeight: 'bold',
               lineHeight: 1.3,
               marginBottom: '2rem',
@@ -44,7 +63,7 @@ const Hero = () => {
             variant="body1"
             sx={{
               fontFamily: '"Rockwell", serif',
-              fontSize: '1.125rem',
+              fontSize: { xs: '1rem', md: '1.125rem' }, 
               lineHeight: 1.75,
               color: '#654236',
             }}
@@ -57,9 +76,18 @@ const Hero = () => {
         </Box>
 
         <Box
-          className="relative md:w-1/2 flex justify-center items-center"
+          className="relative flex justify-center items-center"
           onMouseEnter={() => setPause(true)}
           onMouseLeave={() => setPause(false)}
+          sx={{
+            width: { xs: '100%', sm: '75%', md: '50%' },
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative',
+            mt: { xs: 8, md: 0 },
+            zIndex: 1,
+          }}
         >
           {images.map((image, index) => (
             <Box
@@ -67,18 +95,21 @@ const Hero = () => {
               component="img"
               src={image}
               alt={`Generated Image ${index + 1}`}
-              className={`absolute w-96 h-96 object-cover rounded-lg shadow-md transition-opacity duration-500`}
-              style={{
-                transform: `rotate(${index * 5 - 10}deg)`, // Slight rotation for stacked effect
-                opacity: index === currentImageIndex ? 1 : 0.4, // Front image is fully visible, others are translucent
-                zIndex: index === currentImageIndex ? 10 : index, // Ensure the current image is on top
-                transition: 'opacity 1s ease-in-out, z-index 0s', // Smooth opacity transition with slower fade-in
+              sx={{
+                width: { xs: '80%', sm: '85%', md: '24rem' },
+                height: { xs: 'auto', md: '24rem' },
+                objectFit: 'cover',
+                borderRadius: '8px',
+                position: 'absolute',
+                opacity: index === currentImageIndex ? 1 : 0.4,
+                zIndex: index === currentImageIndex ? 10 : index,
+                transition: 'opacity 1s ease-in-out',
+                transform: { md: `rotate(${index * 5 - 10}deg)` },
               }}
             />
           ))}
         </Box>
-        
-      </div>
+      </Box>
     </Box>
   );
 };

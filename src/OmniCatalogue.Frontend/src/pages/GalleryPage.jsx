@@ -1,15 +1,24 @@
 import React from 'react';
 import Gallery from '../components/Gallery';
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 
 const GalleryPage = () => {
   return (
-      <div className="max-w-screen-xl mx-auto my-16 text-center px-4">
-        <Typography variant="h4" className="text-3xl font-semibold mb-12 text-gray-800">
-          Explore the Gallery
-        </Typography>
-        <Gallery />
-      </div>
+    <Box sx={{ maxWidth: '1200px', mx: 'auto', my: '4rem', textAlign: 'center', px: '1rem' }}>
+      <Typography
+        variant="h4"
+        sx={{
+          fontSize: '3xl',
+          fontWeight: 'bold',
+          mb: '3rem',
+          color: 'gray.800',
+          fontFamily: 'Rockwell, serif',
+        }}
+      >
+        Explore the Gallery
+      </Typography>
+      <Gallery />
+    </Box>
   );
 };
 

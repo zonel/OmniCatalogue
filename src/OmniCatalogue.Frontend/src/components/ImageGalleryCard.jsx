@@ -27,27 +27,47 @@ const ImageGalleryCard = ({ image }) => {
         }}
       />
       <CardContent>
-        <Box sx={{ marginBottom: '0.5rem' }}>
-          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+        <Box sx={{ marginBottom: '1rem' }}>
+          <Typography
+            variant="h5"  // Larger font size
+            sx={{
+              fontWeight: 'bold',
+              fontFamily: 'Rockwell, serif',
+              color: '#F7EBDE',
+              textAlign: 'center',
+            }}
+          >
             Book: {image.bookName}
           </Typography>
         </Box>
         <Box sx={{ marginBottom: '0.5rem' }}>
-          <Typography variant="body2">
+          <Typography
+            variant="body2"
+            sx={{ fontFamily: 'Rockwell, serif' }}
+          >
             <strong>Prompt:</strong> {image.prompt}
           </Typography>
         </Box>
         <Box sx={{ marginBottom: '0.5rem' }}>
-          <Typography variant="body2">
+          <Typography
+            variant="body2"
+            sx={{ fontFamily: 'Rockwell, serif' }}
+          >
             <strong>Created By:</strong> {image.createdBy}
           </Typography>
         </Box>
         <Box sx={{ marginBottom: '0.5rem' }}>
-          <Typography variant="body2">
+          <Typography
+            variant="body2"
+            sx={{ fontFamily: 'Rockwell, serif' }}
+          >
             <strong>Tags:</strong> {image.tags.join(', ')}
           </Typography>
         </Box>
-        <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
+        <Typography
+          variant="body2"
+          sx={{ fontStyle: 'italic', fontFamily: 'Rockwell, serif' }}
+        >
           Date: {new Date(image.createdAt).toLocaleDateString()}
         </Typography>
       </CardContent>

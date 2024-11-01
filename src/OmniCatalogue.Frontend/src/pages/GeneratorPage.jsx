@@ -1,12 +1,25 @@
 import React from 'react';
 import ImageGenerator from '../components/ImageGenerator';
+import { Box, Typography } from '@mui/material';
 
 const GeneratorPage = () => {
   return (
-    <div className="generator-page max-w-screen-lg mx-auto p-8">
-      <h2 className="text-4xl font-bold text-center mb-10">Generate a New Image</h2>
+    <Box className="generator-page" sx={{ maxWidth: 'screen-lg', mx: 'auto', p: 8, fontFamily: 'Rockwell, serif' }}>
+      <Typography
+        variant="h2"
+        sx={{
+          fontSize: '2.5rem',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          mb: 10,
+          fontFamily: 'Rockwell, serif',
+          color: '#654236',
+        }}
+      >
+        Generate a New Image
+      </Typography>
       <ImageGenerator />
-    </div>
+    </Box>
   );
 };
 
