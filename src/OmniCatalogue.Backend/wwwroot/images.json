@@ -46,5 +46,29 @@
     "BookName": "World of Warcraft",
     "CreatedAt": "2023-10-24T00:00:00Z",
     "CreatedBy": "user1"
+  },
+  {
+    "ImageUrl": "http://localhost:5106/images/image7.png",
+    "Prompt": "The Floating City of Laputa",
+    "Tags": ["City", "Magic", "Fiction"],
+    "BookName": "Gulliver's Travels",
+    "CreatedAt": "2024-10-24T00:00:00Z",
+    "CreatedBy": "user2"
+  },
+  {
+    "ImageUrl": "http://localhost:5106/images/image8.png",
+    "Prompt": "Kraken Lake",
+    "Tags": ["Scary", "Monster", "Lake"],
+    "BookName": "Kraken by China Miéville",
+    "CreatedAt": "2024-10-24T00:00:00Z",
+    "CreatedBy": "user2"
+  },
+  {
+    "ImageUrl": "http://localhost:5106/images/image9.png",
+    "Prompt": "The Witcher (Geralt of Rivia)",
+    "Tags": ["Witcher", "Fantasy", "Dark"],
+    "BookName": "The Witcher series by Andrzej Sapkowski",
+    "CreatedAt": "2024-10-24T00:00:00Z",
+    "CreatedBy": "user1"
   }
 ]
