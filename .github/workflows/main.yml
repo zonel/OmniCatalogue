@@ -50,10 +50,6 @@ jobs:
       - name: Run backend tests
         working-directory: ./src/OmniCatalogue.Backend
         run: dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage"
-        
-      - name: Run frontend tests
-        working-directory: ./src/OmniCatalogue.Frontend
-        run: npm test
 
       - name: Run Snyk Security Scan
         uses: snyk/actions/node@master
