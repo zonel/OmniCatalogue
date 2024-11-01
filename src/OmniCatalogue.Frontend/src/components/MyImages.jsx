@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ImageGalleryCard from './ImageGalleryCard';
 import { fetchMyImages } from '../services/api';
+import { Box, Typography } from '@mui/material';
 
 const MyImages = () => {
   const [images, setImages] = useState([]);
@@ -18,18 +19,22 @@ const MyImages = () => {
   }, []);
 
   return (
-    <div style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: '1.5rem',
-      justifyContent: 'center',
-    }}>
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
+        gap: '1.5rem',
+        justifyItems: 'center',
+      }}
+    >
       {images.length > 0 ? (
         images.map((image) => <ImageGalleryCard key={image.imageUrl} image={image} />)
       ) : (
-        <p>No images found for this user.</p>
+        <Typography variant="body1" sx={{ textAlign: 'center', color: '#654236' }}>
+          No images found for this user.
+        </Typography>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -5,9 +5,19 @@ import { Typography, Box } from '@mui/material';
 
 const MyImagesPage = () => {
   return (
-    <Box sx={{ display: 'flex', padding: '2rem', gap: '2rem', fontFamily: 'Rockwell, serif' }}>
-      <UserInfo />
-      
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        padding: '2rem',
+        gap: '2rem',
+        fontFamily: 'Rockwell, serif',
+      }}
+    >
+      <Box sx={{ flex: 1, maxWidth: { xs: '100%', md: '300px' }, mx: { xs: 'auto', md: 0 } }}>
+        <UserInfo />
+      </Box>
+
       <Box sx={{ flex: 3 }}>
         <Typography 
           variant="h4" 
