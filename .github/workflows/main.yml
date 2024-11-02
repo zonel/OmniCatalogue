@@ -63,14 +63,14 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: "test ./src/OmniCatalogue.Frontend"
+          command: code test
 
       - name: Snyk Test Backend
         uses: snyk/actions/dotnet@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: "test ./src/OmniCatalogue.Backend"
+          command: code test
 
   docker-build-and-release:
     runs-on: ubuntu-latest
