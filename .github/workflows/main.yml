@@ -23,15 +23,15 @@ jobs:
           node-version: '18'
 
       - name: Install Frontend Dependencies
-        working-directory: ./src/OmniCatalogue.Frontend
+        working-directory: ./src/omnicatalogue.frontend
         run: npm install
 
       - name: Build Frontend
-        working-directory: ./src/OmniCatalogue.Frontend
+        working-directory: ./src/omnicatalogue.frontend
         run: npm run build
 
       - name: Run ESLint
-        working-directory: ./src/OmniCatalogue.Frontend
+        working-directory: ./src/omnicatalogue.frontend
         run: npm run lint
         continue-on-error: true
 
@@ -41,11 +41,11 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Install Backend Dependencies
-        working-directory: ./src/OmniCatalogue.Backend
+        working-directory: ./src/omnicatalogue.backend
         run: dotnet restore
 
       - name: Build Backend
-        working-directory: ./src/OmniCatalogue.Backend
+        working-directory: ./src/omnicatalogue.backend
         run: dotnet build --configuration Release
 
   snyk-scan:
@@ -92,10 +92,10 @@ jobs:
 
       - name: Build and Push Docker Image (Frontend)
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/omnicatalogue-frontend:latest -f src/omnicatalogue.frontend/Dockerfile .
-          docker push ghcr.io/${{ github.repository }}/omnicatalogue-frontend:latest
+          docker build -t ghcr.io/${{ github.repository_owner }}/omnicatalogue-frontend:latest -f src/omnicatalogue.frontend/Dockerfile .
+          docker push ghcr.io/${{ github.repository_owner }}/omnicatalogue-frontend:latest
 
       - name: Build and Push Docker Image (Backend)
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/omnicatalogue-backend:latest -f src/omnicatalogue.backend/Dockerfile .
-          docker push ghcr.io/${{ github.repository }}/omnicatalogue-backend:latest
+          docker build -t ghcr.io/${{ github.repository_owner }}/omnicatalogue-backend:latest -f src/omnicatalogue.backend/Dockerfile .
+          docker push ghcr.io/${{ github.repository_owner }}/omnicatalogue-backend:latest
