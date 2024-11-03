@@ -41,6 +41,14 @@ OmniCatalogue is an AI-powered web application that brings literature to life by
   <em>Figure 4: The user profile page showing generated images and statistics.</em>
 </p>
 
+## Easiest Way to Run
+
+To quickly start the OmniCatalogue project with Docker Compose:
+
+1. **Go to OmniCatalogue directory, then build and start the containers**:
+   ```bash
+   docker-compose up --build
+
 ## Installation
 
 1. **Clone the Repository**:
