@@ -87,11 +87,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and Push Docker Image (Frontend)
-        run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/omnicatalogue-frontend:latest -f src/OmniCatalogue.Frontend/Dockerfile .
-          docker push ghcr.io/${{ github.repository_owner }}/omnicatalogue-frontend:latest
-
       - name: Build and Push Docker Image (Backend)
         run: |
           docker build -t ghcr.io/${{ github.repository_owner }}/omnicatalogue-backend:latest -f src/OmniCatalogue.Backend/Dockerfile .
