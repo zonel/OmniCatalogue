@@ -92,10 +92,10 @@ jobs:
 
       - name: Build and Push Docker Image (Frontend)
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/omnicatalogue-frontend:latest -f src/OmniCatalogue.Frontend/Dockerfile .
+          docker build -t ghcr.io/${{ github.repository }}/omnicatalogue-frontend:latest -f src/omnicatalogue.frontend/Dockerfile .
           docker push ghcr.io/${{ github.repository }}/omnicatalogue-frontend:latest
 
       - name: Build and Push Docker Image (Backend)
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/omnicatalogue-backend:latest -f src/OmniCatalogue.Backend/Dockerfile .
+          docker build -t ghcr.io/${{ github.repository }}/omnicatalogue-backend:latest -f src/omnicatalogue.backend/Dockerfile .
           docker push ghcr.io/${{ github.repository }}/omnicatalogue-backend:latest
