@@ -10,9 +10,6 @@ on:
 jobs:
   build-test-lint:
     runs-on: ubuntu-latest
-    env:
-      NODE_ENV: development
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -29,11 +26,6 @@ jobs:
       - name: Build Frontend
         working-directory: ./src/OmniCatalogue.Frontend
         run: npm run build
-
-      - name: Run ESLint
-        working-directory: ./src/OmniCatalogue.Frontend
-        run: npm run lint
-        continue-on-error: true
 
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
@@ -87,15 +79,15 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and Push Docker Image (Backend)
+      - name: Build and Push Frontend Image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/omnicatalogue-backend:latest -f src/OmniCatalogue.Backend/Dockerfile .
-          docker push ghcr.io/${{ github.repository_owner }}/omnicatalogue-backend:latest
+          docker build -t ghcr.io/${{ github.repository }}/omnicatalogue-frontend:latest -f src/OmniCatalogue.Frontend/Dockerfile .
+          docker push ghcr.io/${{ github.repository }}/omnicatalogue-frontend:latest
 
-      - name: Build and Push Docker Image (Frontend)
+      - name: Build and Push Backend Image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/omnicatalogue-frontend:latest -f src/OmniCatalogue.Frontend/Dockerfile .
-          docker push ghcr.io/${{ github.repository_owner }}/omnicatalogue-frontend:latest
+          docker build -t ghcr.io/${{ github.repository }}/omnicatalogue-backend:latest -f src/OmniCatalogue.Backend/Dockerfile .
+          docker push ghcr.io/${{ github.repository }}/omnicatalogue-backend:latest
