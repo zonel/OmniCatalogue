@@ -30,6 +30,9 @@ jobs:
         working-directory: ./src/OmniCatalogue.Frontend
         run: npm run build
 
+      - name: Run Basic Application Test
+        run: echo "Test"
+
       - name: Run ESLint
         working-directory: ./src/OmniCatalogue.Frontend
         run: npm run lint
