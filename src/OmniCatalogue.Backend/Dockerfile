@@ -2,12 +2,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
-# Copy the csproj file specifically from the OmniCatalogue.Backend directory and restore dependencies
-COPY src/OmniCatalogue.Backend/*.csproj ./
+# Copy project files and restore dependencies
+COPY *.csproj ./
 RUN dotnet restore
 
 # Copy the rest of the backend code and publish
-COPY src/OmniCatalogue.Backend/. ./
+COPY . ./
 RUN dotnet publish -c Release -o /publish
 
 # Run the app using a smaller runtime image
